@@ -5,7 +5,7 @@ import { Simple } from './component/Simple/Simple';
 import { productInfo } from './data/productData';
 
 function App() {
-  const [isDisplayed,setIsDisplayed]=useState<boolean>(true);
+  // const [isDisplayed,setIsDisplayed]=useState<boolean>(true);
   const [cartProduct,setCartProduct]=useState<Array<any>>([])
   const [productList,setProductList]=useState<Array<any>>([])
   const addToCart=(product:any)=>{
