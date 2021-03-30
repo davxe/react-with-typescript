@@ -1,5 +1,4 @@
-import React,{useState} from 'react';
-import logo from './logo.svg';
+import React,{useEffect, useState} from 'react';
 import './App.css';
 import { Cart, Counter, Product, ProductList, UserInfo } from './component';
 import { Simple } from './component/Simple/Simple';
@@ -8,6 +7,7 @@ import { productInfo } from './data/productData';
 function App() {
   const [isDisplayed,setIsDisplayed]=useState<boolean>(true);
   const [cartProduct,setCartProduct]=useState<Array<any>>([])
+  const [productList,setProductList]=useState<Array<any>>([])
   const addToCart=(product:any)=>{
     console.log("product info",product)
     const newProduct=[...cartProduct,product]
@@ -16,6 +16,10 @@ function App() {
   const updateTitle=(data:{title:string,id:number})=>{
     console.log('update data',data)
   }
+
+  useEffect(()=>{
+    setProductList(productInfo)
+  })
   return (
     <div className="App">
       <h1>Welcome to React with typescript</h1>
@@ -40,7 +44,7 @@ function App() {
         </Product>
       </div> */}
       <div>
-        <ProductList list={productInfo} addToCart={addToCart} updateTitle={updateTitle}/>
+        <ProductList list={productList} addToCart={addToCart} updateTitle={updateTitle}/>
       </div>
       <div>
         <Cart list={cartProduct}/>
