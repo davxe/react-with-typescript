@@ -7,9 +7,10 @@ export const Cart:React.FC<IList>=({list}:IList)=>{
         <div className='cart'>
             {list.length} products
             <div>
-            {list.map(({title,price},index)=>(
+                
+            {list.map(({title,price,quantity},index)=>(
                 <div key={index}>
-                    {title}-{price}
+                    {title} - {price} - {quantity}
                 </div>
             ))}
             </div>
