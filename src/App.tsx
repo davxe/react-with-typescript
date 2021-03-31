@@ -1,10 +1,9 @@
 import React,{useEffect, useState} from 'react';
 import './App.css';
-import { Cart, Counter, Product, ProductList, UserInfo } from './component';
+import { Cart, Counter, Product, ProductInfo, ProductList, Products, UserInfo } from './component';
 import { Simple } from './component/Simple/Simple';
 import { productInfo } from './data/productData';
-import {BrowserRouter,Route} from 'react-router-dom';
-import { countReset } from 'node:console';
+import {BrowserRouter,Link,Route} from 'react-router-dom';
 function App() {
   const [isDisplayed,setIsDisplayed]=useState<boolean>(true);
   const [cartProduct,setCartProduct]=useState<Array<any>>([])
@@ -24,12 +23,17 @@ function App() {
   return (
     <div className="App">
       <h1>Welcome to React with typescript</h1>
-      {/* <div>
-        <Product title='Pen' price={5}>
-          {isDisplayed && <UserInfo lastLogin='somedata'/>}
-        </Product>
-      </div> */} 
       <BrowserRouter>
+        <div>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/products'>Products</Link>
+            </li>
+          </ul>
+        </div>
         <Route 
           path='/counter' 
           component={Counter}
@@ -72,6 +76,7 @@ function App() {
         />
         <Route
           path='/product'
+          exact={true}
           render={(props)=>(
             <div>
               <Cart
@@ -90,6 +95,7 @@ function App() {
         />
         <Route
           path='/allcomponent'
+          exact={true}
           render={(props)=>(
             <div>
               <Cart
@@ -108,6 +114,8 @@ function App() {
             </div>
           )}
         />
+        <Route path='/products' component={Products}/>
+        <Route path='/product/:id' component={ProductInfo}/>
       </BrowserRouter>
     </div>
   );
