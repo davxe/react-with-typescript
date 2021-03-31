@@ -1,3 +1,4 @@
+// we display the cart value 
 import React from 'react'
 interface IList{
     list:Array<any>

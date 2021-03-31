@@ -1,3 +1,5 @@
+// in this cpomponent we display the product
+
 import React, { useState,PropsWithChildren } from 'react'
 interface IProps{
     id?:number,

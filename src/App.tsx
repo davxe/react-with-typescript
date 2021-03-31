@@ -3,9 +3,10 @@ import './App.css';
 import { Cart, Counter, Product, ProductList, UserInfo } from './component';
 import { Simple } from './component/Simple/Simple';
 import { productInfo } from './data/productData';
-
+import {BrowserRouter,Route} from 'react-router-dom';
+import { countReset } from 'node:console';
 function App() {
-  // const [isDisplayed,setIsDisplayed]=useState<boolean>(true);
+  const [isDisplayed,setIsDisplayed]=useState<boolean>(true);
   const [cartProduct,setCartProduct]=useState<Array<any>>([])
   const [productList,setProductList]=useState<Array<any>>([])
   const addToCart=(product:any)=>{
@@ -24,33 +25,91 @@ function App() {
     <div className="App">
       <h1>Welcome to React with typescript</h1>
       {/* <div>
-        <Counter/>
-      </div> */}
-      
-      {/* <div id='user-info'>
-        
-      </div>
-      <div>
-        <Simple name='prince'/>
-      </div> */}
-      {/* <div>
         <Product title='Pen' price={5}>
-          <Counter/><hr/>
-          <p><Simple name='kaushal' age={23}/></p>
-          <div>
-            <button type='button' onClick={()=>setIsDisplayed(x=>!x)}>Toggle</button>
-          </div>
           {isDisplayed && <UserInfo lastLogin='somedata'/>}
         </Product>
-      </div> */}
-      <div>
-        <ProductList list={productList} addToCart={addToCart} updateTitle={updateTitle}/>
-      </div>
-      <div>
-        <Cart list={cartProduct}/>
-      </div>
+      </div> */} 
+      <BrowserRouter>
+        <Route 
+          path='/counter' 
+          component={Counter}
+        />
+        <Route 
+          path='/productlist'
+          render={(props)=>(
+            <div>
+              <Cart
+                {...props}
+                list={cartProduct}
+              />
+              <ProductList 
+                {...props} 
+                list={productList} 
+                addToCart={addToCart} 
+                updateTitle={updateTitle}
+              />
+            </div>
+          )}
+        />
+        <Route 
+          path='/simple'
+          render={(props)=>(
+            <Simple
+              {...props}
+              name='kaushal'
+              age={24}
+            />
+          )}
+        />
+        <Route
+          path='/userinfo'
+          render={(props)=>(
+            <UserInfo
+              {...props}
+              lastLogin='some data'
+            />
+          )}
+        />
+        <Route
+          path='/product'
+          render={(props)=>(
+            <div>
+              <Cart
+                {...props}
+                list={cartProduct}
+              />
+              <Product
+                {...props}
+                title={"desk"}
+                price={50}
+                updateTitle={updateTitle}
+                addToCart={addToCart}
+              />
+            </div>
+          )}
+        />
+        <Route
+          path='/allcomponent'
+          render={(props)=>(
+            <div>
+              <Cart
+                {...props}
+                list={cartProduct}
+              />
+              <Product {...props}
+                title={"board"}
+                price={50}
+                updateTitle={updateTitle}
+                addToCart={addToCart}
+              >
+                <button type='button' onClick={()=>setIsDisplayed(!isDisplayed)}>Toggle</button>
+                {isDisplayed && <UserInfo lastLogin='somedata'/>}
+              </Product>
+            </div>
+          )}
+        />
+      </BrowserRouter>
     </div>
   );
 }
-
 export default App;

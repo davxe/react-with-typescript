@@ -1,3 +1,5 @@
+// in this we display all product list 
+
 import React from 'react'
 import { Product } from '../Product/Product'
 interface IProduct{
