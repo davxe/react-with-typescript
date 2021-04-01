@@ -5,8 +5,8 @@ export const ProductInfo:React.FC =(props:any)=>{
     const [product,setProduct]=useState({title:'',price:0})
     useEffect(()=>{
         // get the product id from the path parameter
-        const id=props.match.params.id
-        if(props.match.params.id){
+        const {id}=props.match.params
+        if(id){
             console.log(productInfo)
             const productDetail=productInfo.find(p=>{
                 return p.id==id

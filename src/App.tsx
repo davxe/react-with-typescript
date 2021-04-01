@@ -4,6 +4,21 @@ import { Cart, Counter, Product, ProductInfo, ProductList, Products, UserInfo } 
 import { Simple } from './component/Simple/Simple';
 import { productInfo } from './data/productData';
 import {BrowserRouter,Link,Route} from 'react-router-dom';
+import styled from 'styled-components';
+
+export const FlexBox=styled.div`
+  display:flex;
+`;
+const HeaderContainer=styled(FlexBox)`
+  width:100vw;
+  height:70px;
+  background-color:#ededed;
+  justify-content:space-between;
+`;
+const AppContainer=styled(FlexBox)`
+  flex-direction:column;
+  overflow:hidden;
+`;
 function App() {
   const [isDisplayed,setIsDisplayed]=useState<boolean>(true);
   const [cartProduct,setCartProduct]=useState<Array<any>>([])
@@ -21,9 +36,19 @@ function App() {
     setProductList(productInfo)
   })
   return (
-    <div className="App">
+    <AppContainer>
+      <HeaderContainer>
+        <FlexBox>Menu</FlexBox>
+        <FlexBox>
+          <h1>Shopping Application</h1>
+        </FlexBox>
+        <FlexBox><Cart list={cartProduct}/></FlexBox>
+      </HeaderContainer>
       <h1>Welcome to React with typescript</h1>
-      <BrowserRouter>
+      <FlexBox>
+        <ProductList list={productList} addToCart={addToCart} updateTitle={updateTitle}/>
+      </FlexBox>
+      {/* <BrowserRouter>
         <div>
           <ul>
             <li>
@@ -116,8 +141,8 @@ function App() {
         />
         <Route path='/products' component={Products}/>
         <Route path='/product/:id' component={ProductInfo}/>
-      </BrowserRouter>
-    </div>
+      </BrowserRouter> */}
+    </AppContainer>
   );
 }
 export default App;
